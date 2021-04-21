@@ -1,23 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: baseline;
-  width: 100%;
-  padding: 5vh 10vw;
+  padding: 5vh 5vw;
   background-color: #242424;
 `;
 
 const Title = styled.h1`
   color: white;
-  font-size: 2rem;
+  width: 100%;
+  text-align: left;
+  font-size: 2.5rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  @media screen and (max-width: 600px) {
+    font-size: 2rem;
+  }
 `;
 
 const SearchBar = styled.input`
-  width: 80%;
+  width: 90vw;
   font-size: 1.5rem;
   padding: 1rem;
   border-radius: 10px;
@@ -25,9 +32,9 @@ const SearchBar = styled.input`
 
 export const Header = () => {
   return (
-    <Container>
+    <MainContainer>
       <Title>Find Movies</Title>
       <SearchBar type="text" placeholder="E.g. Harry Potter" />
-    </Container>
+    </MainContainer>
   );
 };
