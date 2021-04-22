@@ -8,6 +8,9 @@ const MainContainer = styled.div`
   justify-content: center;
   padding: 5vh 5vw;
   background-color: #242424;
+  @media screen and (max-width: 600px) {
+    padding: 2vh 5vw;
+  }
 `;
 
 const Title = styled.h1`
@@ -19,7 +22,7 @@ const Title = styled.h1`
   margin-bottom: 1rem;
   font-weight: 300;
   @media screen and (max-width: 600px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 `;
 
