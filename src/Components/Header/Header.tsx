@@ -16,6 +16,7 @@ const MainContainer = styled.div`
 const Title = styled.h1`
   color: white;
   width: 100%;
+  max-width: 1440px;
   text-align: left;
   font-size: 2.5rem;
   margin: 0;
@@ -28,6 +29,7 @@ const Title = styled.h1`
 
 const SearchBar = styled.input`
   width: 90vw;
+  max-width: 1440px;
   font-size: 1.5rem;
   padding: 1rem;
   border-radius: 10px;
