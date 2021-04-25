@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MovieBox } from "./Components/MovieBox";
 
 const MainContainer = styled.div`
   display: flex;
@@ -31,59 +32,18 @@ const MovieListContainer = styled.div`
   }
 `;
 
-const MovieBox = styled.div`
-  overflow: hidden;
-  text-align: center;
-  font-weight: 100;
-  @media screen and (max-width: 600px) {
-    font-size: 0.7rem;
-  }
-`;
-
-const MoviePoster = styled.img`
-  width: 100%;
-  transition: transform 0.5s;
-  :hover {
-    transform: scale(1.1);
-  }
-`;
-
 export const MovieList = () => {
   return (
     <MainContainer>
       <ContentContainer>
         <Title>You might like</Title>
         <MovieListContainer>
-          <MovieBox>
-            <MoviePoster src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"></MoviePoster>
-            <div>Guardians of galaxy </div>
-            <div>(2014)</div>
-          </MovieBox>
-          <MovieBox>
-            <MoviePoster src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"></MoviePoster>
-            <div>Guardians of galaxy </div>
-            <div>(2014)</div>
-          </MovieBox>
-          <MovieBox>
-            <MoviePoster src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"></MoviePoster>
-            <div>Guardians of galaxy </div>
-            <div>(2014)</div>
-          </MovieBox>
-          <MovieBox>
-            <MoviePoster src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"></MoviePoster>
-            <div>Guardians of galaxy </div>
-            <div>(2014)</div>
-          </MovieBox>
-          <MovieBox>
-            <MoviePoster src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"></MoviePoster>
-            <div>Guardians of galaxy </div>
-            <div>(2014)</div>
-          </MovieBox>
-          <MovieBox>
-            <MoviePoster src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"></MoviePoster>
-            <div>Guardians of galaxy </div>
-            <div>(2014)</div>
-          </MovieBox>
+          <MovieBox image="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg" />
+          <MovieBox
+            title="Guardians of the Galaxy"
+            date="2014"
+            image="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
+          />
         </MovieListContainer>
       </ContentContainer>
     </MainContainer>
