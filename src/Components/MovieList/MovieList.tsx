@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { MovieBox } from "./Components/MovieBox";
 import axios from "axios";
+import { Loading } from "../../Utils/Loading";
 
 interface Props {
   search?: string;
@@ -53,6 +54,8 @@ const MovieListContainer = styled.div`
 
 export const MovieList = ({ search }: Props) => {
   const [movies, setMovies] = useState<Movies[]>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     fetch("http://www.omdbapi.com/?s=%22star%20wars%22&apikey=3b66bce")
@@ -61,6 +64,7 @@ export const MovieList = ({ search }: Props) => {
           console.log(
             "Looks like there was a problem. Status Code: " + response.status
           );
+          setError(true);
           return;
         }
 
@@ -82,6 +86,14 @@ export const MovieList = ({ search }: Props) => {
         console.log("Fetch Error :-S", err);
       });
   }, [search]);
+
+  if (error) {
+    return <div>Error screen</div>;
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <MainContainer>
