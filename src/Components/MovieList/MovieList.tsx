@@ -55,29 +55,32 @@ export const MovieList = ({ search }: Props) => {
   const [movies, setMovies] = useState<Movies[]>();
 
   useEffect(() => {
-    const data = axios
-      .get("http://www.omdbapi.com/?s=%22star%20wars%22&apikey=3b66bce")
-      .then((res) => {
-        const data = res.data.Search;
-        console.log(data);
-        const cleaned = data.map((movie: OMDBSearchResultData) => {
-          return {
-            title: movie.Title,
-            date: movie.Year,
-            image: movie.Poster,
-            imdbId: movie.imdbID,
-          };
-        });
-        setMovies(cleaned);
-      });
+    fetch("http://www.omdbapi.com/?s=%22star%20wars%22&apikey=3b66bce")
+      .then(function (response) {
+        if (response.status !== 200) {
+          console.log(
+            "Looks like there was a problem. Status Code: " + response.status
+          );
+          return;
+        }
 
-    setMovies([
-      {
-        title: "Guardians of the galax",
-        image:
-          "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg",
-      },
-    ]);
+        response.json().then(function (data) {
+          data = data.Search;
+          console.log(data);
+          const cleaned = data.map((movie: OMDBSearchResultData) => {
+            return {
+              title: movie.Title,
+              date: movie.Year,
+              image: movie.Poster,
+              imdbId: movie.imdbID,
+            };
+          });
+          setMovies(cleaned);
+        });
+      })
+      .catch(function (err) {
+        console.log("Fetch Error :-S", err);
+      });
   }, [search]);
 
   return (
