@@ -44,7 +44,7 @@ export const Header = ({ setSearch }: Props) => {
 
   useEffect(() => {
     const t = setTimeout(() => {
-      if (input) console.log("Start Searching");
+      if (input) setSearch(input);
     }, 400);
 
     return () => {

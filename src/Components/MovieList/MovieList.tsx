@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MovieBox } from "./Components/MovieBox";
 import axios from "axios";
 import { Loading } from "../../Utils/Loading";
+import { createImportSpecifier } from "typescript";
 
 interface Props {
   search?: string;
@@ -56,14 +57,19 @@ export const MovieList = ({ search }: Props) => {
   const [movies, setMovies] = useState<Movies[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const [notFound, setNotFound] = useState<boolean>(false);
 
   useEffect(() => {
+    if (search) search = search.trim();
     const url = search
       ? `http://www.omdbapi.com/?s=${search}&apikey=3b66bce`
       : "http://www.omdbapi.com/?s=%22star%20wars%22&apikey=3b66bce";
 
     fetch(url)
       .then(function (response) {
+        setLoading(true);
+        setError(false);
+        setNotFound(false);
         if (response.status !== 200) {
           console.log(
             "Looks like there was a problem. Status Code: " + response.status
@@ -73,18 +79,21 @@ export const MovieList = ({ search }: Props) => {
         }
 
         response.json().then(function (data) {
-          data = data.Search;
-          console.log(data);
-          const cleaned = data.map((movie: OMDBSearchResultData) => {
-            return {
-              title: movie.Title,
-              date: movie.Year,
-              image: movie.Poster,
-              imdbId: movie.imdbID,
-            };
-          });
-          setMovies(cleaned);
-          setLoading(false);
+          if (data.Response === "False") {
+            setNotFound(true);
+          } else {
+            data = data.Search;
+            const cleaned = data.map((movie: OMDBSearchResultData) => {
+              return {
+                title: movie.Title,
+                date: movie.Year,
+                image: movie.Poster,
+                imdbId: movie.imdbID,
+              };
+            });
+            setMovies(cleaned);
+            setLoading(false);
+          }
         });
       })
       .catch(function (err) {
@@ -94,6 +103,10 @@ export const MovieList = ({ search }: Props) => {
 
   if (error) {
     return <div>Error screen</div>;
+  }
+
+  if (notFound) {
+    return <div>Movie not found</div>;
   }
 
   if (loading) {

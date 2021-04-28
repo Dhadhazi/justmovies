@@ -3,7 +3,7 @@ import { Header } from "./Components/Header/Header";
 import { MovieList } from "./Components/MovieList/MovieList";
 
 function App() {
-  const [search, setSearch] = useState<string>("Harry Potter");
+  const [search, setSearch] = useState<string>("");
 
   return (
     <div>
