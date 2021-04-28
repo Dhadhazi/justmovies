@@ -58,7 +58,11 @@ export const MovieList = ({ search }: Props) => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch("http://www.omdbapi.com/?s=%22star%20wars%22&apikey=3b66bce")
+    const url = search
+      ? `http://www.omdbapi.com/?s=${search}&apikey=3b66bce`
+      : "http://www.omdbapi.com/?s=%22star%20wars%22&apikey=3b66bce";
+
+    fetch(url)
       .then(function (response) {
         if (response.status !== 200) {
           console.log(
@@ -80,6 +84,7 @@ export const MovieList = ({ search }: Props) => {
             };
           });
           setMovies(cleaned);
+          setLoading(false);
         });
       })
       .catch(function (err) {
