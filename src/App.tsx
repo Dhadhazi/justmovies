@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header setSearch={setSearch} />
       <MovieList search={search} />
     </div>
   );

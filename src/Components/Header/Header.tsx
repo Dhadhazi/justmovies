@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+
+interface Props {
+  setSearch: Function;
+}
 
 const MainContainer = styled.div`
   display: flex;
@@ -35,11 +39,28 @@ const SearchBar = styled.input`
   border-radius: 10px;
 `;
 
-export const Header = () => {
+export const Header = ({ setSearch }: Props) => {
+  const [input, setInput] = useState<string>("");
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (input) console.log("Start Searching");
+    }, 400);
+
+    return () => {
+      clearTimeout(t);
+    };
+  }, [input]);
+
   return (
     <MainContainer>
       <Title>Find Movies</Title>
-      <SearchBar type="text" placeholder="E.g. Harry Potter" />
+      <SearchBar
+        type="text"
+        placeholder="E.g. Harry Potter"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
     </MainContainer>
   );
 };
